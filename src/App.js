@@ -1,8 +1,7 @@
 
 import './App.css';
 import {useEffect, useState} from 'react';
-// import { RecipeList } from './Recipes';
-import { RecipeList  } from './RecipeData';
+import { RecipeList  } from './Recipes';
 import { Link } from "react-router-dom";
 
 let recipeData = [{
