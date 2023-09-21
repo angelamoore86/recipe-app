@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { App, Add } from './App';
+import App from './App';
+import Add from './Add';
+import AddRecipe from './form';
+
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -11,11 +14,14 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}/>
-      <Route path="/add" element={<Add />} />
+      <Route path="/add" element={<Add />}>
+        <Route
+            path="form"
+            element={<AddRecipe />}
+          />
+      </Route>
     </Routes>
-    
   </BrowserRouter>
-    
   
 );
 
