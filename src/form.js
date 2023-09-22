@@ -1,24 +1,19 @@
+
 import {useState} from 'react';
 
-export function AddRecipe( { onAdd }) {
+export function AddRecipe( { onSubmit }) {
 
-const [newRecipe, setNewRecipe] = useState({
-    id: "",
+const [recipe, setRecipe] = useState({
     name: "",
     ingredients: "",
     directions: "",
     description: "",
-    image: "",
+    image: ""
   });
-  const addRecipe = (e) => {
-  e.preventDefault();
-  const {name, item} = e.target;
-  setNewRecipe({ ...newRecipe, [name]: item});
-  };
   const submitRecipe = (e) => {
     e.preventDefault();
-    onAdd(newRecipe);
-    setNewRecipe({
+    onSubmit(recipe);
+    setRecipe({
         id: "",
         name: "",
         ingredients: "",
@@ -31,35 +26,29 @@ const [newRecipe, setNewRecipe] = useState({
         <div>
             <form onSubmit={submitRecipe}>
                 <div>
-                    <label>Recipe Name</label>
-                    <input type="text" value={newRecipe.name}
-                    onChange={addRecipe}></input>
+                    <label>Recipe Name: </label>
+                    <input type="text" value={recipe.name}
+                    onChange={ (e) => setRecipe({...recipe, name: e.target.value })}></input>
                 </div>
                 <div>
-                    <label>Ingredients</label>
-                    <textarea type="text" value={newRecipe.ingredients}
-                    onChange={addRecipe}/>
+                    <label>Ingredients: </label>
+                    <textarea type="text" value={recipe.ingredients}
+                    onChange={ (e) => setRecipe({...recipe, ingredients: e.target.value })}/>
                 </div>
                 <div>
-                    <label>Ingredients</label>
-                    <textarea value={newRecipe.ingredients}
-                    onChange={addRecipe}/>
+                    <label>Directions: </label>
+                    <textarea value={recipe.directions}
+                    onChange={ (e) => setRecipe({...recipe, directions: e.target.value })}/>
                 </div>
                 <div>
-                    <label>Directions</label>
-                    <textarea value={newRecipe.directions}
-                    onChange={addRecipe}/>
+                    <label>Description: </label>
+                    <textarea value={recipe.description}
+                    onChange={ (e) => setRecipe({...recipe, description: e.target.value })}/>
                 </div>
                 <div>
-                    <label>Description</label>
-                    <textarea value={newRecipe.description}
-                    onChange={addRecipe}/>
-                </div>
-                <div>
-                    <label>Select Image File:</label>
-                    <input type="file" value={newRecipe.image}
-                    onChange={addRecipe}></input>
-                    <input type="submit"></input>
+                    <label>Select Image File: </label>
+                    <input type="file" value={recipe.image}
+                    onChange={ (e) => setRecipe({...recipe, image: e.target.value })}></input>
                 </div>
                 <button type='submit'>Add Recipe</button>
             </form>

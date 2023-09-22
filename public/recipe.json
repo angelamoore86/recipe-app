@@ -3,7 +3,7 @@
   "id": 0,
   "name": "Macaroni and Cheese",
   "ingredients": "Macaroni, Cheese, Milk, Flour",
-  "directions": "Boil Macaroni. Add to casserole dish with with rest",
+  "directions": "Boil Macaroni and drain. Add to casserole dish with rest of ingredients and stir",
   "description": "Rich and Creamy macaroni dish",
   "image": "images/MacAndCheese.jpg"
   }, 
@@ -19,7 +19,7 @@
     "id": 2,
     "name": "Peanut Butter Cookies",
     "ingredients": "Peanut Butter, sugar, egg",
-    "directions": "Mix all ingriendents together and bake spoon size amounts on sheet",
+    "directions": "Mix all ingredients together and bake spoon size amounts on sheet",
     "description": "Easy, three ingredient, crispy cookie",
     "image":"images/PeanutButterCookies.jpg"
   }
