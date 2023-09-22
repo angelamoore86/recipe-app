@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function Add(){
     return (
@@ -8,7 +8,7 @@ export function Add(){
         </nav>
         <h1>Add Recipe </h1>
         <h3>To add a recipe fill out the form below.</h3>
-        <Outlet />
+        
       </div>
     )
   }
