@@ -1,0 +1,25 @@
+const recipes = [
+    {
+    name: "Macaroni-and-Cheese",
+    ingredients: "Macaroni, Cheese, Milk, Flour",
+    directions: "Boil Macaroni and drain. Add to casserole dish with rest of ingredients and stir",
+    description: "Rich and Creamy macaroni dish",
+    image: "/images/MacAndCheese.jpg"
+    }, 
+    {
+      name: "Buffalo-Chicken-Tacos",
+      ingredients: "Chicken breast, cheese, tortillas, hot sauce, butter, salt and pepper",
+      directions: "Slow cook chicken, hot sauce, butter, salt and pepper.  Shred chicken with sauce. Place in wraps and bake", 
+      description: "Little prep and a family favorite.",
+      image: "/images/BuffaloChickenTacos.jpg"
+    }, 
+    {
+      name: "Peanut-Butter-Cookies",
+      ingredients: "Peanut Butter, sugar, egg",
+      directions: "Mix all ingredients together and bake spoon size amounts on sheet",
+      description: "Easy, three ingredient, crispy cookie",
+      image: "/images/PeanutButterCookies.jpg"
+    },
+  ];
+
+  export default recipes;
