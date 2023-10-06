@@ -1,5 +1,5 @@
 import './App.css';
-import HomePage from './pages/Recipes';
+import RecipeList from './pages/Recipes';
 import NotFoundPage from './pages/NotFoundPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
@@ -12,7 +12,7 @@ export function App() {
       <NavBar />
       <div id="page-body">
     <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<RecipeList />} />
         <Route path="/form" element={<AddRecipeForm />} />
         <Route path="*" element={<NotFoundPage />} />
     </Routes>
@@ -20,7 +20,8 @@ export function App() {
     </div>  
     </BrowserRouter>
     
-  ); 
+  );
+  
 }
 
 export default App;

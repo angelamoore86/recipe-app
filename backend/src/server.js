@@ -27,22 +27,15 @@ app.post('/api/form', upload.single('image'), async (req, res) => {
     const {name, ingredients, directions, description} = req.body;
     const image = req.file.filename;
 
-    await db.collection('recipes').insertOne({name, ingredients,
+    const result = await db.collection('recipes').insertOne({name, ingredients,
          directions, description, image });
-
-         const recipes = await db.collection('recipes').find({}).toArray();
-
-         if(recipes){
-            res.json(recipes);
-            res.status(201).json(recipe);
-         }
-    // if(result.insertedCount === 1){
-    //     console.log("Recipe was added.");
-    //     res.status(201).json(recipe);
-    // } else {
-    //     console.error("Could not add recipe.");
-    //     res.status(500).json(recipe);
-    // }
+    if(result.insertedCount === 1){
+        console.log("Recipe was added.");
+        res.status(201).json(recipe);
+    } else {
+        console.error("Could not add recipe.");
+        res.status(500).json(recipe);
+    }
     
 });
 

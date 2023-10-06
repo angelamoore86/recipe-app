@@ -1,29 +1,41 @@
+import React, { useEffect, useState } from 'react';
+import {Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-export function RecipeList ( {recipesData, setRecipesData} ) {
-    return (
-        recipesData.map((recipeData, i) => {
-            return <Recipe name={recipeData.name} ingredients={recipeData.ingredients}
-                        description={recipeData.description} directions={recipeData.directions} image={recipeData.image} recipesData={recipesData} setRecipesData={setRecipesData}/>
-        }) 
-    )
-}
+function RecipeList() {
 
-function Recipe( { name, ingredients, description, directions, image, recipesData, setRecipesData } ) {
-    return (
-        <div>
-            <h3>{name}</h3>
-            <img src={image} alt={name} width="300" height="300"/><br />
-            <p><b>Description:</b> {description}</p>
-            <p><b>Ingredients:</b> {ingredients}</p>
-            <p><b>Directions:</b>  {directions}</p>
-            
-            <button onClick={() => {
+    const [recipes, setRecipes] = useState(null);
+
+    useEffect( () => {
+        fetch("/api/recipes")
+        .then( response => response.json() )
+        .then((data) => setRecipes(data))
+        .catch(e => console.log(e.message));
+    }, []);
+
+    if (recipes == null) return;
+
+    return(
+
+        <Container>
+            <Row>
+                <Col>
+                    <h1>Welcome to My Recipe App</h1>
+                    {recipes.map((recipe) => (
+                    <Card key={recipe.name} >
+                    <Card.Img style={{height: "30rem"}}  variant="top" src={recipe.image} />
+                    <Card.Body>
+                        <Card.Title>{recipe.name}</Card.Title>
+                        <Card.Text>Description: {recipe.description}</Card.Text>
+                        <Card.Text>Ingredients: {recipe.ingredients}</Card.Text>
+                        <Card.Text>Directions: {recipe.directions}</Card.Text>
+                    </Card.Body>
+                    <Button onClick={() => {
                 // make api call to backend to remove current recipe
                 var myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
                 var urlencoded = new URLSearchParams();
-                urlencoded.append("recipename", name);
+                urlencoded.append("recipename", recipe.name);
 
                 var requestOptions = {
                 method: 'POST',
@@ -36,16 +48,21 @@ function Recipe( { name, ingredients, description, directions, image, recipesDat
                 .then(response => response.text())
                 .then(result => {
                     let deletedRecipe = [];
-                    for (let i=0; i<recipesData.length; i++){
-                    if(recipesData[i].name !== name){
-                        deletedRecipe.push(recipesData[i]);
+                    for (let i=0; i<recipes.length; i++){
+                    if(recipes[i].name !== recipe.name){
+                        deletedRecipe.push(recipes[i]);
                     }
-                    setRecipesData(deletedRecipe);
+                    setRecipes(deletedRecipe);
                 }
                 })
                 .catch(error => console.log('error', error));
-            }}>Remove Recipe</button>
-        </div>
-    )
+            }}>Remove Recipe</Button>
+            </Card>
+            ))}
+            </Col>
+            </Row>
+            </Container>
+    );
 }
+
 export default RecipeList;
