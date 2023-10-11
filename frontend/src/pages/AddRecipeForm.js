@@ -1,7 +1,9 @@
 import {useState} from 'react';
-import {Container, Form, Button} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function AddRecipeForm() {
+const navigate = useNavigate();
 const [newRecipe, setNewRecipe] = useState({
     name: '',
     ingredients: '',
@@ -22,7 +24,7 @@ const [newRecipe, setNewRecipe] = useState({
         [name]: value,    
     });
   };
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -32,7 +34,7 @@ const [newRecipe, setNewRecipe] = useState({
     formData.append("description", newRecipe.description);
     formData.append("image", newRecipe.image);
 
-    const response = await fetch('/api/recipes', {
+    const response = await fetch('/api/form', {
         method: 'POST',
         body: formData,
     });
@@ -48,12 +50,10 @@ const [newRecipe, setNewRecipe] = useState({
     } else {
         console.error('Recipe could not be added.')
     }
+    navigate('/');
 };
     return (
-        <Container>
-            <h1>Add Recipe</h1>
-            <h3>To add a recipe fill out the form below.</h3>
-            <div>
+        <div>
             <Form onSubmit={handleSubmit}>
                 <div>
                     <label>Recipe Name: </label>
@@ -77,8 +77,7 @@ const [newRecipe, setNewRecipe] = useState({
                 </div>
                 <Button type="submit">Submit</Button>
             </Form>
-            </div>
-        </Container>
+        </div>
     );
 };
 export default AddRecipeForm;

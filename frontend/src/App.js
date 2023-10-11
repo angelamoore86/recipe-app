@@ -1,9 +1,9 @@
 import './App.css';
-import RecipeList from './pages/Recipes';
+import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
-import AddRecipeForm from './pages/AddRecipeForm';
+import AddRecipePage from './pages/AddRecipePage';
 
 export function App() {
   return (
@@ -12,8 +12,8 @@ export function App() {
       <NavBar />
       <div id="page-body">
     <Routes>
-        <Route path="/" element={<RecipeList />} />
-        <Route path="/form" element={<AddRecipeForm />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/form" element={<AddRecipePage />} />
         <Route path="*" element={<NotFoundPage />} />
     </Routes>
       </div>
@@ -21,7 +21,6 @@ export function App() {
     </BrowserRouter>
     
   );
-  
 }
 
 export default App;
